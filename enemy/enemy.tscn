@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc3j5rfej8ohc"]
+
+[ext_resource type="Script" path="res://enemy/enemy.gd" id="1_86snu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xluna"]
+size = Vector2(60, 60)
+
+[node name="Enemy" type="Area2D"]
+z_index = 1
+collision_layer = 4
+collision_mask = 34
+script = ExtResource("1_86snu")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -30.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(5.0056e-06, 0.98132, 0.98232, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xluna")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(1, 244)
+collision_mask = 4
+collide_with_areas = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

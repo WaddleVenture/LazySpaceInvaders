@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqvxyjkp5nhke"]
+
+[ext_resource type="Script" path="res://player/bullets/player_bullets.gd" id="1_bo2ya"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aghhy"]
+size = Vector2(8, 24)
+
+[node name="PlayerBullets" type="Area2D"]
+collision_layer = 2
+collision_mask = 28
+script = ExtResource("1_bo2ya")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.0
+offset_top = -12.0
+offset_right = 4.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.91717, 0.916008, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_aghhy")

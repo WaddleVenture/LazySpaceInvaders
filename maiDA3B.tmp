@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://c30vln4qgxrk1"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_nqrcm"]
+[ext_resource type="PackedScene" uid="uid://b6h8nlfjmmy0m" path="res://player/player.tscn" id="1_vu82p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_djc6y"]
+size = Vector2(1155.25, 70.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_54a2k"]
+size = Vector2(1153, 67.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8hnvj"]
+size = Vector2(1202, 114)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_nqrcm")
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 1154.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_vu82p")]
+z_index = 1
+position = Vector2(580, 603)
+collision_mask = 8
+
+[node name="Borders" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 10
+
+[node name="Top" type="CollisionShape2D" parent="Borders"]
+position = Vector2(577, -35)
+shape = SubResource("RectangleShape2D_djc6y")
+
+[node name="Bottom" type="CollisionShape2D" parent="Borders"]
+position = Vector2(576.5, 681.375)
+shape = SubResource("RectangleShape2D_54a2k")
+
+[node name="Killzone" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 4
+
+[node name="ColorRect" type="ColorRect" parent="Killzone"]
+offset_left = -38.0
+offset_top = 534.0
+offset_right = 1166.0
+offset_bottom = 650.0
+color = Color(0.158472, 0.158472, 0.158472, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(564, 593)
+shape = SubResource("RectangleShape2D_8hnvj")
+
+[connection signal="area_entered" from="Borders" to="." method="_on_borders_area_entered"]
